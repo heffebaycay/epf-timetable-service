@@ -1,0 +1,19 @@
+{# src/Heffe/EPFTimetableBundle/Resources/views/Email/validation.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div style="width: 430px; font-size: 11px; color: #333333; font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;">
+            <br/>
+            Bonjour,<br/>
+            <br/>
+            <p>Vous vous êtes récemment connecté au service EPF Timetable Updater avec le compte Google suivant : {{ googleEmail }}.</p>
+            <p>Afin de pouvoir accéder au service, vous devez valider votre compte en cliquant sur le lien suivant ou en saisissant le code suivant sur la page de validation : {{ code }}</p>
+            <p><a href="http://epf.chebel.fr/{{ path('validation_step3_from_mail', {'validationCode': code, 'googleId': googleId }) }}">Valider mon compte</a></p>
+            <p>Merci de me signaler tout problème/bug.</p>
+            <p><i>Fabien</i></p>
+        </div>
+    </body>
+</html>

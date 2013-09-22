@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+        <service id="heffe_epf_timetable.httpclient" class="Heffe\EPFTimetableBundle\Services\HttpClient">
+        </service>
+        <service id="heffe_epf_timetable.googleservice" class="Heffe\EPFTimetableBundle\Services\GoogleService">
+            <file>%kernel.root_dir%/../src/Heffe/EPFTimetableBundle/Libs/Google/Google_Client.php</file>
+            <argument>%kernel.root_dir%/../src/Heffe/EPFTimetableBundle/Libs/Google/contrib/</argument>
+            <argument>%heffe_epf_timetable.google_app_name%</argument>
+            <argument>%heffe_epf_timetable.google_client_id%</argument>
+            <argument>%heffe_epf_timetable.google_client_secret%</argument>
+            <argument>%heffe_epf_timetable.google_developer_key%</argument>
+            <argument>%heffe_epf_timetable.google_redirect_uri%</argument>
+        </service>
+        <service id="heffe_epf_timetable.logging" class="Heffe\EPFTimetableBundle\Services\Logger">
+            <argument type="service" id="logger"/>
+            <tag name="monolog.logger" channel="timetable"/>
+        </service>
+    </services>
+
+    <!--
+    <parameters>
+        <parameter key="heffe_epf_timetable.example.class">Heffe\EPFTimetableBundle\Example</parameter>
+    </parameters>
+
+    <services>
+        <service id="heffe_epf_timetable.example" class="%heffe_epf_timetable.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+</container>

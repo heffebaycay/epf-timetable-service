@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{% block title %}EPF Timetable{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" media="screen" href="{{ asset('css/bootstrap.min.css') }}"/>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+                <div class="alert">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Attention !</strong> {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Attention !</strong> {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Félicitations !</strong> {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Attention !</strong> {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}{% endblock %}
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    </body>
+</html>

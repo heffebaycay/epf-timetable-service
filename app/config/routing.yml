@@ -1,0 +1,4 @@
+heffe_epf_timetable:
+    resource: "@HeffeEPFTimetableBundle/Controller/"
+    type:     annotation
+    prefix:   /

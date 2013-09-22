@@ -1,0 +1,57 @@
+{# src/Heffe/EPFTimetableBundle/Resources/views/Auth/step2.html.twig #}
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <form class="form-signin" method="post" action="{{ path('user_setup_save') }}">
+        <h2 class="form-signin-heading">Configuration</h2>
+        <div class="input-prepend">
+            <span class="add-on" style="height: 26px;">@</span>
+            <input type="text" class="input-block-level" value="{{ user.googleEmail }}" disabled="disabled"/>
+        </div>
+        <input type="hidden" name="googleId" value="{{ user.googleId }}"/>
+        <input type="text" class="input-block-level" name="username" placeholder="Login EPF"{% if user.username is not empty %}value="{{ user.username }}"{% endif %}/>
+        <p>Calendrier à utiliser :</p>
+        {% for cal in calendars %}
+            <label class="radio">
+                <input type="radio" name="calendars" id="{{ cal.id }}" value="{{ cal.id }}"{% if user.calendarId is not null and user.calendarId == cal.id %}checked{% endif %}/>
+                {{ cal.summary }}
+            </label>
+        {% endfor %}
+        <button class="btn btn-primary" type="submit">Enregistrer</button>
+    </form>
+{% endblock %}
